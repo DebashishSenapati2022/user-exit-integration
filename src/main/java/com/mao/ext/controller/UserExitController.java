@@ -28,13 +28,16 @@ public class UserExitController {
 		
 		PaymentGatewayRequest paymentGatewayRequest= carrierData.getPaymentGatewayRequest();
 		
-		log.info("customer ID from controller is {}",paymentGatewayRequest.getCustomerId());
+    	log.info("invoked /orderDetails...");	
+    			
+	//	log.info("customer ID from controller is {}",paymentGatewayRequest.getCustomerId());
 	//	log.info("EnableVisaMandate2019 ID from controller is {}",paymentGatewayRequest.getEnableVisaMandate2019());
 	//	log.info("Order ID from controller is {}",paymentGatewayRequest.getOrderId());
 	//	log.info("PaymentGroup ID from controller is {}",paymentGatewayRequest.getPaymentGroupId());
-		log.info("Parcel object............. :: {}", new Gson().toJson(paymentGatewayRequest));
+	
+    	log.info("Parcel object............. :: {}", new Gson().toJson(paymentGatewayRequest));
 		
-		return "SUCCESS";
+		return new Gson().toJson(paymentGatewayRequest);
 	}
 
 }
