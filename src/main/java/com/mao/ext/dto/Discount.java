@@ -5,11 +5,12 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class  Root implements Serializable{
+public class  Discount implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ShipResponse shipResponse;
+	private int amount;
+    private String currency;
 }

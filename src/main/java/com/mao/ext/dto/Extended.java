@@ -1,7 +1,6 @@
 package com.mao.ext.dto;
-
-import lombok.Data;
-
-@Data
-public class Extended{
-}
+//package com.parcel.carrier.postshipresponse.parceldto;
+//
+//public class  Extended {
+//
+//}

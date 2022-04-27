@@ -1,5 +1,7 @@
 package com.mao.ext.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.mao.ext.dto.PaymentGatewayRequest;
-import com.mao.ext.dto.RequestPayload;
+import com.mao.ext.dto.ParcelRequest;
+import com.mao.ext.dto.ParcelResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,22 +24,19 @@ public class UserExitController {
 		return "User Exit Integration Service is UP.........";
 	}
 	
-	
+
 	@PostMapping("/orderDetails")
-	public String postData(@RequestBody RequestPayload carrierData) {
+	public ResponseEntity<ParcelResponse> parcelPost(@RequestBody ParcelRequest parcelRequest ) {
 		
-		PaymentGatewayRequest paymentGatewayRequest= carrierData.getPaymentGatewayRequest();
+		ParcelResponse parcelResponse=new ParcelResponse();
+		parcelResponse.setShipResponse(parcelRequest.getShipResponse());
+		String response= new Gson().toJson(parcelResponse);
 		
-    	log.info("invoked /orderDetails...");	
-    			
-	//	log.info("customer ID from controller is {}",paymentGatewayRequest.getCustomerId());
-	//	log.info("EnableVisaMandate2019 ID from controller is {}",paymentGatewayRequest.getEnableVisaMandate2019());
-	//	log.info("Order ID from controller is {}",paymentGatewayRequest.getOrderId());
-	//	log.info("PaymentGroup ID from controller is {}",paymentGatewayRequest.getPaymentGroupId());
-	
-    	log.info("Parcel object............. :: {}", new Gson().toJson(paymentGatewayRequest));
+		log.info("ParcelRequest ===>>> {}",parcelRequest);
+		log.info("ParcelResponse ===>>> {}",response);
 		
-		return new Gson().toJson(paymentGatewayRequest);
+		return new ResponseEntity<>(parcelResponse ,HttpStatus.OK);
+		
 	}
 
 }

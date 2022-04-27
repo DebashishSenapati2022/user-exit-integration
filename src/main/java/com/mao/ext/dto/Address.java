@@ -1,33 +1,20 @@
-package com.mao.ext.dto;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.mao.ext.dto; 
+import java.io.Serializable;
+import java.util.List; 
 
 import lombok.Data;
 
 @Data
-public class Address{
-    @JsonProperty("Address1") 
-    private String address1;
-    @JsonProperty("Address2") 
-    private String address2;
-    @JsonProperty("Address3") 
-    private String address3;
-    @JsonProperty("City") 
-    private String city;
-    @JsonProperty("Country") 
-    private String country;
-    @JsonProperty("County") 
-    private String county;
-    @JsonProperty("Email") 
-    private String email;
-    @JsonProperty("FirstName") 
-    private String firstName;
-    @JsonProperty("LastName") 
-    private String lastName;
-    @JsonProperty("Phone") 
-    private String phone;
-    @JsonProperty("PostalCode") 
+public class  Address implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private String city;
+    private String countryCode;
     private String postalCode;
-    @JsonProperty("State") 
-    private String state;
+    private boolean residential;
+    private String stateOrProvinceCode;
+    private List<String> streetLines;
 }
